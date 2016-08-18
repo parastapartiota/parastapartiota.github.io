@@ -20,12 +20,48 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+
+		<style type="text/css">
+			.slides section {
+				font-size: 1.5em;
+			    text-shadow:	1px 1px 10px #333,
+                            	-1px -1px 10px #333,
+	                            1px -1px 10px #333,
+	                            -1px 1px 10px #333,
+	                            1px 0px 10px #333,
+	                            -1px 0px 10px #333,
+	                            0px 1px 10px #333,
+	                            0px -1px 10px #333;
+			}
+			.reveal {
+				/*max-width: 800px;
+				margin: 0 auto;*/
+				background: #111;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h1>Parasta partiota Tampereella</h1>
+					<a href="http://www.tampereenkotkat.fi">Tampereen Kotkat</a>
+					<a href="http://www.tampereenlokit.fi">Tampereen Lokit</a>
+				</section>
+				<section data-background-size="contain" data-background-image="img/kuva1.JPG">Partio on...</section>
+				<section data-background-size="contain" data-background-image="img/kuva1.JPG">...yhdessä tekemistä ja oppimista</section>
+				<section data-background-size="contain" data-background-image="img/kuva2.JPG">...paljon riippukeinuja</section>
+				<section data-background-size="contain" data-background-image="img/kuva3.JPG">...seikkailuja ja vähän papukaijoja</section>
+				<section data-background-size="contain" data-background-image="img/kuva4.JPG">...leikkimaja keskellä metsää</section>
+				<section data-background-size="contain" data-background-image="img/kuva5.JPG">...vesileikkejä</section>
+				<section data-background-size="contain" data-background-image="img/kuva6.JPG">...iltanuotioita</section>
+				<section data-background-size="contain" data-background-image="img/kuva7.JPG">...kymmeniä tuhansia partiolaisia ympäri maailman samalla leirillä</section>
+				<section data-background-size="contain" data-background-image="img/kuva8.JPG">...upeita maisemia ja retkeilyä</section>
+				<section data-background-size="contain" data-background-image="img/kuva9.JPG">...itensä voittamista</section>
+				<section data-background-size="contain" data-background-image="img/kuva10.JPG">...jännittäviä elämyksiä</section>
+				<section data-background-size="contain" data-background-image="img/kuva11.JPG">...hiekkaleikkejä</section>
+				<section data-background-size="contain" data-background-image="img/kuva12.JPG">...yhteishenkeä</section>
+				<section data-background-size="contain" data-background-image="img/kuva13.JPG">...teltassa nukkumista</section>
 			</div>
 		</div>
 
@@ -44,6 +80,10 @@
 					{ src: 'plugin/notes/notes.js', async: true },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
+			});
+
+			Reveal.configure({
+			  autoSlide: 5000
 			});
 		</script>
 	</body>
