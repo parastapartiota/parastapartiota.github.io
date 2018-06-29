@@ -15,11 +15,13 @@
 
 		<!-- Printing and PDF exports -->
 		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi)
+		  ? 'css/print/pdf.css'
+		  : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
 		</script>
 
 		<style type="text/css">
@@ -48,10 +50,27 @@
 		</style>
 	</head>
 	<body>
+		<script>
+		var ppState = {
+		  firstImageLoaded: false
+		};
+
+		function ppFirstImageAvailable() {
+		  ppState.firstImageLoaded = true;
+		  return true;
+		}
+		</script>
+		<div hidden>
+			<img src="img/partioon.JPG" onload="ppFirstImageAvailable()"/>
+			<img src="img/kuva1.JPG" />
+			<img src="img/purjehdus.JPG" />
+			<img src="img/kuva2.JPG" />
+			<img src="img/pehmomiekkailu.JPG" />
+		</div>
 		<div class="reveal">
 			<div class="slides">
 
-				<section data-background-size="contain" data-background-image="img/partio-on.JPG">
+				<section data-background-size="contain" data-background-image="img/partioon.JPG">
 					Partio on...
 				</section>
 
@@ -160,22 +179,50 @@
 		<script src="js/reveal.js"></script>
 
 		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				history: true,
+		(function() {
+		  function parastapartiota() {
+		    console.log('Ready!');
+		    // More info https://github.com/hakimel/reveal.js#configuration
+		    Reveal.initialize({
+		      history: true,
 
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
+		      // More info https://github.com/hakimel/reveal.js#dependencies
+		      dependencies: []
+		    });
 
-			Reveal.configure({
-			  autoSlide: 7000
-			});
+		    Reveal.configure({
+		      autoSlide: 7000
+		    });
+		  }
+
+		  function wait(ms, callback) {
+		    return setTimeout(callback, ms);
+		  }
+
+		  function getWaiter(ms, callback) {
+		    return wait(ms, callback);
+		  }
+
+		  function waitFor(checkCondition, ms, callback) {
+		    var interval = setInterval(function() {
+		      if (checkCondition()) {
+		        clearInterval(interval);
+		        return callback();
+		      }
+		    }, ms);
+		  }
+
+		  function isFirstImageLoaded() {
+		    return ppState.firstImageLoaded === true;
+		  }
+
+		  document.addEventListener(
+		    'DOMContentLoaded',
+		    getWaiter(2000, function() {
+		      waitFor(isFirstImageLoaded, 500, parastapartiota);
+		    })
+		  );
+		})();
 		</script>
 	</body>
 </html>
